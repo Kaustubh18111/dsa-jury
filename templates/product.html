@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ product.name }}</h1>
+<p><strong>ID:</strong> {{ product.product_id }}</p>
+<p><strong>Category:</strong> {{ product.category }}</p>
+<p><strong>Price:</strong> ${{ '%.2f'|format(product.price) }}</p>
+<p><strong>Description:</strong> {{ product.description }}</p>
+<p><strong>Stock:</strong> {{ stock }}</p>
+
+<section class="card">
+  <h2>Simulate Order</h2>
+  <form action="{{ url_for('record_order') }}" method="post">
+    <input type="hidden" name="redirect_pid" value="{{ product.product_id }}" />
+    <label>Comma-separated Product IDs
+      <input name="order_ids" placeholder="e.g. {{ product.product_id }}, p2, p3" />
+    </label>
+    <button type="submit">Record Order</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>Suppliers</h2>
+  {% if suppliers %}
+    <ul class="list">
+      {% for s in suppliers %}
+        <li>{{ s.name }} <small>({{ s.supplier_id }})</small> — {{ s.contact_info }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No suppliers linked to this product.</p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>Recommendations</h2>
+  {% if recommendations %}
+    <ul class="list">
+      {% for r in recommendations %}
+        <li>
+          <a href="{{ url_for('product_detail', product_id=r.product_id) }}">{{ r.name }}</a>
+          <small> ({{ r.product_id }}) - ${{ '%.2f'|format(r.price) }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No recommendations yet for this product.</p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Results for "{{ query }}"</h1>
+
+{% if results %}
+  <ul class="list">
+    {% for p in results %}
+      <li>
+        <a href="{{ url_for('product_detail', product_id=p.product_id) }}">{{ p.name }}</a>
+        <small> ({{ p.product_id }}) - ${{ '%.2f'|format(p.price) }} · {{ p.category }}</small>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No matching products.</p>
+{% endif %}
+{% endblock %}

@@ -56,3 +56,22 @@ JSON files are created under `data/`:
 - The trie is rebuilt on load from the product catalog (derived index), demonstrating file organization while minimizing duplicated state.
 - All in-memory data structures are standard Python structures (dicts/sets/lists) emphasizing algorithmic complexity.
 - Code is well-commented explaining data structure choices and complexity trade-offs.
+
+## Web frontend (Flask)
+
+A simple Flask web app is included in `app.py` using the same in-memory data structures and JSON persistence.
+
+Quick start:
+
+```bash
+pip3 install -r requirements.txt
+python3 app.py
+```
+
+Open http://localhost:5000 and you’ll find:
+
+- Home: list all products, search bar, and an “Add Product” form
+- Product page: details, stock, suppliers, and recommendations, plus a form to simulate an order
+- Supply Chain: add suppliers and link them to products, list all suppliers
+
+Data is automatically saved on server shutdown via `atexit.register(save_data, ...)`.

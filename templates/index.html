@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>All Products</h1>
+
+<section class="card">
+  <h2>Add New Product</h2>
+  <form action="{{ url_for('add_product') }}" method="post" class="form-grid">
+    <label>Product ID<input name="product_id" required></label>
+    <label>Name<input name="name" required></label>
+    <label>Description<textarea name="description"></textarea></label>
+    <label>Category<input name="category" placeholder="uncategorized"></label>
+    <label>Price<input name="price" type="number" step="0.01" min="0" value="0"></label>
+    <label>Initial Stock<input name="initial_stock" type="number" min="0" value="0"></label>
+    <button type="submit">Add Product</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>Product List</h2>
+  {% if products %}
+    <ul class="list">
+      {% for p in products %}
+        <li>
+          <a href="{{ url_for('product_detail', product_id=p.product_id) }}">{{ p.name }}</a>
+          <small> ({{ p.product_id }}) - ${{ '%.2f'|format(p.price) }} · {{ p.category }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No products yet. Add one above.</p>
+  {% endif %}
+</section>
+{% endblock %}
