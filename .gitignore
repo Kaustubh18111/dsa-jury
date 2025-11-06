@@ -1,0 +1,10 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data persistence files (generated at runtime)
+data/*.json
+
+# VS Code settings (optional)
+.vscode/
