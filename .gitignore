@@ -1,10 +1,20 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# Byte-compiled / optimized / DLL files# Byte-compiled / optimized / DLL files
 
-# Data persistence files (generated at runtime)
-data/*.json
+__pycache__/__pycache__/
 
-# VS Code settings (optional)
-.vscode/
+*.py[cod]*.py[cod]
+
+*$py.class*$py.class
+
+
+
+# Data persistence files (generated at runtime)# Data persistence files (generated at runtime)
+
+data/*.jsondata/*.json
+
+
+
+# VS Code settings (optional)# VS Code settings (optional)
+
+.vscode/.vscode/
+
